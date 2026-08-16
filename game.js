@@ -5,6 +5,17 @@ const scoreEl = document.getElementById('score');
 const overlay = document.getElementById('overlay');
 const startButton = document.getElementById('startButton');
 const invincibleToggle = document.getElementById('invincibleToggle');
+const damageSlider = document.getElementById('damageSlider');
+const speedSlider = document.getElementById('speedSlider');
+const enemySpeedSlider = document.getElementById('enemySpeedSlider');
+const damageLabel = document.getElementById('damageLabel');
+const speedLabel = document.getElementById('speedLabel');
+const enemySpeedLabel = document.getElementById('enemySpeedLabel');
+const waveDisplay = document.getElementById('waveDisplay');
+
+let damageMultiplier = 1;
+let speedMultiplier = 1;
+let enemySpeedMultiplier = 1;
 
 const WORLD = { width: 1800, height: 1200 };
 const keys = {};
@@ -25,6 +36,8 @@ const player = {
   invulnTimer: 0,
   hitFlash: 0,
   score: 0,
+  combo: 0,
+  comboTimer: 0,
 };
 
 const enemies = [];
@@ -66,6 +79,7 @@ function spawnWave() {
     boss.x = WORLD.width / 2 + 50;
     boss.y = WORLD.height / 2 - 50;
   }
+  updateWaveDisplay();
 }
 
 function spawnMedkit() {
@@ -175,7 +189,7 @@ function attack() {
     const dist = Math.hypot(dx, dy);
 
     if (dist <= 180) {
-      enemy.health -= 50;
+      enemy.health -= 50 * damageMultiplier;
       enemy.x += (dx / Math.max(dist, 0.001)) * 26 + dirX * 18;
       enemy.y += (dy / Math.max(dist, 0.001)) * 26 + dirY * 18;
 
@@ -191,7 +205,10 @@ function attack() {
       }
 
       if (enemy.health <= 0) {
-        player.score += 1;
+        player.combo += 1;
+        player.comboTimer = 4.0;
+        let scoreGain = 1 + Math.floor(player.combo / 5) * 0.5;
+        player.score += scoreGain;
 
         if (enemies.filter((e) => e.isBoss).length === 0 && enemies.length <= 1) {
           wave += 1;
@@ -217,7 +234,7 @@ function handleInput(dt) {
     const len = Math.hypot(moveX, moveY) || 1;
     moveX /= len;
     moveY /= len;
-    player.x += moveX * player.speed * dt;
+    player.x += moveX * player.speed * speedMultiplier * dt;
     player.y += moveY * player.speed * dt;
   }
 
@@ -240,8 +257,8 @@ function updateEnemies(dt) {
       const dirX = dx / dist;
       const dirY = dy / dist;
       if (dist > 26) {
-        enemy.x += dirX * enemy.speed * dt;
-        enemy.y += dirY * enemy.speed * dt;
+        enemy.x += dirX * enemy.speed * enemySpeedMultiplier * dt;
+        enemy.y += dirY * enemy.speed * enemySpeedMultiplier * dt;
       }
     }
 
@@ -524,6 +541,7 @@ function draw() {
   renderMedkits();
   renderEnemies();
   renderPlayer();
+  renderCombo();
   ctx.restore();
 }
 
@@ -570,6 +588,25 @@ invincibleToggle.addEventListener('change', () => {
     player.armor = player.armorMax;
   }
 });
+
+damageSlider.addEventListener('input', (e) => {
+  damageMultiplier = parseFloat(e.target.value);
+  damageLabel.textContent = damageMultiplier.toFixed(1) + 'x';
+});
+
+speedSlider.addEventListener('input', (e) => {
+  speedMultiplier = parseFloat(e.target.value);
+  speedLabel.textContent = speedMultiplier.toFixed(1) + 'x';
+});
+
+enemySpeedSlider.addEventListener('input', (e) => {
+  enemySpeedMultiplier = parseFloat(e.target.value);
+  enemySpeedLabel.textContent = enemySpeedMultiplier.toFixed(1) + 'x';
+});
+
+function updateWaveDisplay() {
+  waveDisplay.textContent = 'Wave: ' + wave;
+}
 
 startButton.addEventListener('click', () => {
   overlay.querySelector('h1').textContent = '2D Sword Arena';

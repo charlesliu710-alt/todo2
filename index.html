@@ -15,15 +15,29 @@
             <div id="healthFill" class="health-fill"></div>
           </div>
         </div>
+        <div class="combo-display" id="comboDisplay"></div>
         <div id="score" class="score">Kills: 0</div>
       </div>
     </div>
 
     <aside class="settings-panel">
       <h2>Settings</h2>
+      <div class="wave-display" id="waveDisplay">Wave: 1</div>
       <label class="toggle-row">
         <span>Invincible</span>
         <input id="invincibleToggle" type="checkbox" />
+      </label>
+      <label class="slider-row">
+        <span>Dmg: <span id="damageLabel">1.0x</span></span>
+        <input id="damageSlider" type="range" min="0.5" max="3" step="0.1" value="1" />
+      </label>
+      <label class="slider-row">
+        <span>Speed: <span id="speedLabel">1.0x</span></span>
+        <input id="speedSlider" type="range" min="0.5" max="2" step="0.1" value="1" />
+      </label>
+      <label class="slider-row">
+        <span>Enemies: <span id="enemySpeedLabel">1.0x</span></span>
+        <input id="enemySpeedSlider" type="range" min="0.3" max="2" step="0.1" value="1" />
       </label>
     </aside>
 
