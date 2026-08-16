@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo2 - 2D Sword Arena</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="hud">
+      <div class="topbar">
+        <div class="health-wrap">
+          <div class="label">HP</div>
+          <div class="health-bar">
+            <div id="healthFill" class="health-fill"></div>
+          </div>
+        </div>
+        <div id="score" class="score">Kills: 0</div>
+      </div>
+    </div>
+
+    <aside class="settings-panel">
+      <h2>Settings</h2>
+      <label class="toggle-row">
+        <span>Invincible</span>
+        <input id="invincibleToggle" type="checkbox" />
+      </label>
+    </aside>
+
+    <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+    <div id="overlay" class="overlay visible">
+      <div class="panel">
+        <h1>2D Sword Arena</h1>
+        <p>Move with WASD</p>
+        <p>Attack with mouse click or Space</p>
+        <p>Survive as long as you can</p>
+        <button id="startButton">Start Game</button>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
