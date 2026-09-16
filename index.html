@@ -3,53 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>todo2 - 2D Sword Arena</title>
+    <title>Broke A Bone</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="hud">
-      <div class="topbar">
-        <div class="health-wrap">
-          <div class="label">HP</div>
-          <div class="health-bar">
-            <div id="healthFill" class="health-fill"></div>
-          </div>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">✦</span><span>BROKE A BONE</span></div>
+        <div class="wallet" aria-label="Money"><span class="coin">$</span><strong id="money">120</strong></div>
+        <div class="run-stats"><span id="runLabel">RUN 01</span><span class="stat-divider"></span><span id="boneCount">0 BONES</span></div>
+      </header>
+
+      <section class="game-layout">
+        <div class="stage-wrap">
+          <div class="stage-heading"><span id="locationTag">THE WATER TOWER</span><span id="bestLabel">BEST 0 BONES</span></div>
+          <canvas id="gameCanvas" width="960" height="600" aria-label="Broke A Bone game"></canvas>
+          <div class="stage-footer"><span>MOVE <b>A</b><b>D</b> <b>L</b> SMASH <b>SPACE</b> TO LAUNCH</span><span id="statusText">READY TO RISK IT</span><button id="stopButton" class="stop-button" type="button">STOP</button></div>
         </div>
-        <div class="combo-display" id="comboDisplay"></div>
-        <div id="score" class="score">Kills: 0</div>
-      </div>
-    </div>
 
-    <aside class="settings-panel">
-      <h2>Settings</h2>
-      <div class="wave-display" id="waveDisplay">Wave: 1</div>
-      <label class="toggle-row">
-        <span>Invincible</span>
-        <input id="invincibleToggle" type="checkbox" />
-      </label>
-      <label class="slider-row">
-        <span>Dmg: <span id="damageLabel">1.0x</span></span>
-        <input id="damageSlider" type="range" min="0.5" max="3" step="0.1" value="1" />
-      </label>
-      <label class="slider-row">
-        <span>Speed: <span id="speedLabel">1.0x</span></span>
-        <input id="speedSlider" type="range" min="0.5" max="2" step="0.1" value="1" />
-      </label>
-      <label class="slider-row">
-        <span>Enemies: <span id="enemySpeedLabel">1.0x</span></span>
-        <input id="enemySpeedSlider" type="range" min="0.3" max="2" step="0.1" value="1" />
-      </label>
-    </aside>
+        <aside class="shop-panel">
+          <div class="panel-kicker">THE BREAK ROOM</div>
+          <h1>Pick your<br /><em>bad idea.</em></h1>
+          <p class="panel-copy">Hit the objects on the way down. Every break pays. Every landing is a little worse.</p>
 
-    <canvas id="gameCanvas" width="960" height="540"></canvas>
+          <div class="section-label">DROP ZONES</div>
+          <div id="locationList" class="location-list"></div>
+
+          <div class="section-label upgrade-title">UPGRADES</div>
+          <div id="upgradeList" class="upgrade-list"></div>
+        </aside>
+      </section>
+    </main>
 
     <div id="overlay" class="overlay visible">
-      <div class="panel">
-        <h1>2D Sword Arena</h1>
-        <p>Move with WASD</p>
-        <p>Attack with mouse click or Space</p>
-        <p>Survive as long as you can</p>
-        <button id="startButton">Start Game</button>
+      <div class="start-card">
+        <div class="card-topline"><span>EXTREME TESTING FACILITY</span><span>v1.0</span></div>
+        <h2>HOW LOW<br /><em>CAN YOU GO?</em></h2>
+        <p>Jump from the top. Steer into breakable objects. Stack bones and cash before you hit the ground.</p>
+        <button id="startButton" class="primary-button">START THE DROP <span>→</span></button>
+        <div class="card-note">A / D to steer · SPACE to launch</div>
       </div>
     </div>
 
