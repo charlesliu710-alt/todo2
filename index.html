@@ -17,6 +17,11 @@
       <section class="game-layout">
         <div class="stage-wrap">
           <div class="stage-heading"><span id="locationTag">THE WATER TOWER</span><span id="bestLabel">BEST 0 BONES</span></div>
+          <div class="health-meter" role="status" aria-label="Player health">
+            <span class="health-label">HEALTH</span>
+            <div class="health-track"><div id="healthFill" class="health-fill"></div></div>
+            <span id="healthValue" class="health-value">100%</span>
+          </div>
           <canvas id="gameCanvas" width="960" height="600" aria-label="Broke A Bone game"></canvas>
           <div class="stage-footer"><span>MOVE <b>A</b><b>D</b> <b>L</b> SMASH</span><span id="statusText">READY TO RISK IT</span><button id="stopButton" class="stop-button" type="button">STOP</button></div>
         </div>

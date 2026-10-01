@@ -19,6 +19,11 @@ button { font: inherit; }
 .stage-heading { margin-bottom: 11px; }
 .stage-heading span:first-child { color: var(--coral); }
 .stage-heading span:last-child, .stage-footer { color: var(--muted); }
+.health-meter { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font: 500 10px 'DM Mono', monospace; }
+.health-label { color: var(--ink); }
+.health-track { height: 10px; flex: 1; overflow: hidden; border: 1px solid var(--ink); background: rgba(16,24,32,.12); }
+.health-fill { width: 100%; height: 100%; background: var(--mint); transition: width .18s ease, background-color .18s ease; }
+.health-value { min-width: 38px; color: var(--muted); text-align: right; }
 #gameCanvas { display: block; width: 100%; aspect-ratio: 1.6; border: 2px solid var(--ink); background: #99bdc0; cursor: crosshair; }
 .stage-footer { margin-top: 12px; }
 .stop-button { border: 1px solid var(--coral); background: transparent; color: var(--coral); padding: 4px 8px; font: 500 10px 'DM Mono', monospace; letter-spacing: .08em; cursor: pointer; }

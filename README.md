@@ -1,3 +1,15 @@
+# Broke A Bone
+
+## Run the browser game
+
+Python 3 is required. From the project folder, run:
+
+```bash
+python3 server.py
+```
+
+Then open [http://localhost:8000](http://localhost:8000). Stop the server with `Ctrl+C`. To choose another port, run `python3 server.py --port 8080`.
+
 # todo2 - 3D Action Game
 
 A fast-paced 3D action game where you control a sword-wielding character to fight enemies on an expansive map.
